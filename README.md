@@ -4,6 +4,8 @@
 
 This is a ROS 2 Jazzy workspace that brings together all the ```jazzy``` packages for Moveit2 software stack. It can then be readily used with Gazebo, Open 3D Engine software simulation engines or any other ROS 2 software that depends on moveit2. 
 
+**NOTE**, could not reconsile STOMP and thus I am skipping building the STOMP planner.
+
 **TODO** how long it takes to build, disk space, recommended RAM
 
 ## Setup 
@@ -22,6 +24,7 @@ sudo apt-get install nlohmann-json3-dev
 ```bash
 cd ~
 git clone https://github.com/Mechazo11/moveit2_jazzy_ws
+cd moveit2_jazzy_ws
 vcs import src < moveit2_jazzy.repos
 rosdep install -r --from-paths src --rosdistro jazzy -i -y
 ```
@@ -30,7 +33,7 @@ rosdep install -r --from-paths src --rosdistro jazzy -i -y
 
 ```bash
 source ~/ubuntu22_jazzy_ws/install/setup.bash
-colcon build --cmake-args -DCMAKE_BUILD_TYPE=Release
+colcon build --packages-ignore stomp_moveit moveit_planners_stomp --cmake-args -DCMAKE_BUILD_TYPE=Release
 ```
 
 ## Misc

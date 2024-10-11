@@ -1,5 +1,9 @@
 repositories:
   # Keep moveit_* repos here because they are released with moveit
+  ompl/ompl:
+    type: git
+    url: https://github.com/ompl/ompl.git
+    version: main
   moveit/geometric_shapes:
     type: git
     url: https://github.com/moveit/geometric_shapes.git
@@ -27,6 +31,10 @@ repositories:
   moveit/random_numbers:
     type: git
     url: https://github.com/moveit/random_numbers.git
+    version: ros2
+  moveit/warehouse_ros:
+    type: git
+    url: https://github.com/moveit/warehouse_ros.git
     version: ros2
   moveit/srdfdom:
     type: git
