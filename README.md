@@ -17,7 +17,7 @@ This is a ROS 2 Jazzy workspace that brings together all the ```jazzy``` package
 ```bash
 sudo apt update
 sudo apt upgrade
-sudo apt-get install nlohmann-json3-dev
+sudo apt-get install libompl-dev
 ```
 
 * Download this repo and download packages defined in ```moveit2_jazzy.repos``` file.
@@ -25,7 +25,7 @@ sudo apt-get install nlohmann-json3-dev
 cd ~
 git clone https://github.com/Mechazo11/moveit2_jazzy_ws
 cd moveit2_jazzy_ws
-vcs import src < moveit2_jazzy.repos
+vcs import src < moveit2_jazzy.repos --recursive
 rosdep install -r --from-paths src --rosdistro jazzy -i -y
 ```
 
@@ -33,8 +33,11 @@ rosdep install -r --from-paths src --rosdistro jazzy -i -y
 
 ```bash
 source ~/ubuntu22_jazzy_ws/install/setup.bash
-colcon build --packages-ignore stomp_moveit moveit_planners_stomp --cmake-args -DCMAKE_BUILD_TYPE=Release
+colcon build --packages-up-to moveit_planners_ompl --packages-ignore stomp stomp_moveit moveit_planners_stomp --cmake-args -DCMAKE_BUILD_TYPE=Release
+source ./install/setup.bash
+colcon build --packages-ignore stomp stomp_moveit moveit_planners_stomp --cmake-args -DCMAKE_BUILD_TYPE=Release
 ```
+
 
 ## Misc
 
@@ -80,4 +83,16 @@ gmake[1]: *** [CMakeFiles/Makefile2:1887: online_signal_smoothing/CMakeFiles/mov
 gmake[1]: *** Waiting for unfinished jobs....
 gmake: *** [Makefile:146: all] Error 2
 ---
+```
+
+```bash
+'ament_cmake_pytest' is in: /home/icore/moveit2_jazzy_ws/install/ament_cmake_pytest, /home/icore/ubuntu22_jazzy_ws/install/ament_cmake_pytest
+        'ament_cmake' is in: /home/icore/moveit2_jazzy_ws/install/ament_cmake, /home/icore/ubuntu22_jazzy_ws/install/ament_cmake
+        'ament_cmake_test' is in: /home/icore/moveit2_jazzy_ws/install/ament_cmake_test, /home/icore/ubuntu22_jazzy_ws/install/ament_cmake_test
+        'ament_cmake_google_benchmark' is in: /home/icore/moveit2_jazzy_ws/install/ament_cmake_google_benchmark, /home/icore/ubuntu22_jazzy_ws/install/ament_cmake_google_benchmark
+        'action_msgs' is in: /home/icore/moveit2_jazzy_ws/install/action_msgs, /home/icore/ubuntu22_jazzy_ws/install/action_msgs
+        'ament_cmake_ros' is in: /home/icore/ubuntu22_jazzy_ws/install/ament_cmake_ros
+        'ament_cmake_gtest' is in: /home/icore/moveit2_jazzy_ws/install/ament_cmake_gtest, /home/icore/ubuntu22_jazzy_ws/install/ament_cmake_gtest
+        'ament_cmake_core' is in: /home/icore/moveit2_jazzy_ws/install/ament_cmake_core, /home/icore/ubuntu22_jazzy_ws/install/ament_cmake_core
+        'ament_cmake_gmock' is in: /home/icore/moveit2_jazzy_ws/install/ament_cmake_gmock, /home/icore/ubuntu22_jazzy_ws/install/ament_cmake_gmock
 ```
