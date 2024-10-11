@@ -140,3 +140,7 @@ repositories:
     type: git
     url: https://github.com/ros2-gbp/ackermann_msgs-release.git
     version: release/jazzy/ackermann_msgs/2.0.2-6
+  wg-perception/object_recognition_msgs:
+    type: git
+    url: https://github.com/wg-perception/object_recognition_msgs.git
+    version: ros2
