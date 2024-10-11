@@ -22,7 +22,7 @@ rosdep install -r --from-paths src --rosdistro jazzy -i -y
 
 ```bash
 source ~/ubuntu22_jazzy_ws/install/setup.bash
-colcon build --event-handlers desktop_notification- status- --cmake-args -DCMAKE_BUILD_TYPE=Releas
+colcon build --event-handlers desktop_notification- status- --cmake-args -DCMAKE_BUILD_TYPE=Release
 ```
 
 ## Misc

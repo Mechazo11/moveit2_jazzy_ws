@@ -17,17 +17,21 @@ repositories:
     url: https://github.com/moveit/moveit2.git
     version: main
   moveit/moveit_task_constructor:
-      type: git
-      url: https://github.com/moveit/moveit_task_constructor.git
-      version: master
-  moveit/moveit_visual_tools:
-      type: git
-      url: https://github.com/moveit/moveit_visual_tools
-      version: ros2
-  ros2/ackermann_msgs:
     type: git
-    url: https://github.com/ros2-gbp/ackermann_msgs-release.git
-    version: release/jazzy/ackermann_msgs/2.0.2-6
+    url: https://github.com/moveit/moveit_task_constructor.git
+    version: ros2
+  moveit/moveit_visual_tools:
+    type: git
+    url: https://github.com/moveit/moveit_visual_tools
+    version: ros2
+  moveit/moveit_visual_tools:
+    type: git
+    url: https://github.com/moveit/moveit_visual_tools
+    version: ros2
+  moveit/random_numbers:
+    type: git
+    url: https://github.com/moveit/random_numbers.git
+    version: ros2
   ament_cmake/ament_cmake:
     type: git
     url: https://github.com/ros2-gbp/ament_cmake-release.git
@@ -116,10 +120,6 @@ repositories:
     type: git
     url: https://github.com/ros2-gbp/ament_cmake_ros-release.git
     version: release/jazzy/ament_cmake_ros/0.12.0-3
-  ros2/action_msgs:
-    type: git
-    url: https://github.com/ros2-gbp/rcl_interfaces-release.git
-    version: release/jazzy/action_msgs/2.0.2-2
   picknikrobotics/rosparam_shortcuts:
     type: git
     url: https://github.com/PickNikRobotics/rosparam_shortcuts
@@ -128,3 +128,15 @@ repositories:
     type: git
     url: https://github.com/PickNikRobotics/rviz_visual_tools.git
     version: ros2
+  ros2/action_msgs:
+    type: git
+    url: https://github.com/ros2-gbp/rcl_interfaces-release.git
+    version: release/jazzy/action_msgs/2.0.2-2
+  ros2/eigen_stl_containers:
+    type: git
+    url: https://github.com/ros/eigen_stl_containers.git
+    version: ros2
+  ros2/ackermann_msgs:
+    type: git
+    url: https://github.com/ros2-gbp/ackermann_msgs-release.git
+    version: release/jazzy/ackermann_msgs/2.0.2-6
