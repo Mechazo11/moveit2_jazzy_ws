@@ -1,6 +1,6 @@
 ![Apache 2.0 License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)
 
-# Moveit2 Jazzy Ros2 workspace
+# Moveit2 ROS2 Jazzy Workspace
 
 This is a ROS 2 Jazzy workspace that brings together all the ```jazzy``` packages for Moveit2 software stack. It can then be readily used with Gazebo, Open 3D Engine software simulation engines or any other ROS 2 software that depends on moveit2. 
 
