@@ -1,5 +1,13 @@
 repositories:
   # Keep moveit_* repos here because they are released with moveit
+  moveit/warehouse_ros_sqlite:
+    type: git
+    url: https://github.com/moveit/warehouse_ros_sqlite.git
+    version: ros2
+  moveit/py_binding_tools:
+    type: git
+    url: https://github.com/moveit/py_binding_tools.git
+    version: ros2
   moveit/geometric_shapes:
     type: git
     url: https://github.com/moveit/geometric_shapes.git
@@ -92,3 +100,7 @@ repositories:
     type: git
     url: https://github.com/Mechazo11/ruckig.git
     version: dev
+  open-rmf/rmf_utils:
+    type: git
+    url: https://github.com/open-rmf/rmf_utils.git
+    version: jazzy
