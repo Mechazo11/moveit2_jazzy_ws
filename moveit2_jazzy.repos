@@ -104,3 +104,15 @@ repositories:
     type: git
     url: https://github.com/open-rmf/rmf_utils.git
     version: jazzy
+  mechazo11/robot_localization:
+    type: git
+    url: https://github.com/Mechazo11/robot_localization.git
+    version: ros2
+  ros-geographic-info/geographic_info:
+    type: git
+    url: https://github.com/ros-geographic-info/geographic_info.git
+    version: ros2
+  ros2/message_filters:
+    type: git
+    url: https://github.com/Mechazo11/message_filters.git
+    version: rolling
