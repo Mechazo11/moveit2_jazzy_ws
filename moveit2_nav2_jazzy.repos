@@ -108,3 +108,19 @@ repositories:
     type: git
     url: https://github.com/Mechazo11/message_filters.git
     version: rolling
+  # ros-navigation/navigation2:
+  #   type: git
+  #   url: https://github.com/Mechazo11/navigation2.git
+  #   version: jazzy-fix
+  ros/bond_core:
+    type: git
+    url: https://github.com/ros/bond_core.git
+    version: ros2
+  BehaviorTree/BehaviorTree.CPP:
+    type: git
+    url: https://github.com/BehaviorTree/BehaviorTree.CPP.git
+    version: master
+  ros-navigation/nav2_minimal_turtlebot_simulation:
+    type: git
+    url: https://github.com/ros-navigation/nav2_minimal_turtlebot_simulation.git
+    version: main

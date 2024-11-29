@@ -2,11 +2,10 @@
 
 # Moveit2 ROS2 Jazzy Workspace
 
-This is a ROS 2 Jazzy workspace that brings together all the ```jazzy``` packages for Moveit2 software stack. It can then be readily used with Gazebo, Open 3D Engine software simulation engines or any other ROS 2 software that depends on moveit2. 
+This is a ROS 2 Jazzy workspace that brings together all the ```jazzy``` packages for Moveit2 and Nav2 software stacks. It can then be readily used with Gazebo Harmonic, Open 3D Engine software simulation engines or any other downstream software stack that depends on moveit2 and nav2. Must have access to a base ROS 2 Jazzy workspace, either installed from binaries or built from source such as this [one]()
 
 **NOTE**, could not reconsile STOMP and thus I am skipping building the STOMP planner.
 
-**TODO** how long it takes to build, disk space, recommended RAM
 
 ## Setup 
 
@@ -17,15 +16,15 @@ This is a ROS 2 Jazzy workspace that brings together all the ```jazzy``` package
 ```bash
 sudo apt update
 sudo apt upgrade
-sudo apt-get install libompl-dev
+sudo apt-get install libompl-dev libyaml-cpp-dev
 ```
 
 * Download this repo and download packages defined in ```moveit2_jazzy.repos``` file.
 ```bash
 cd ~
-git clone https://github.com/Mechazo11/moveit2_jazzy_ws
-cd moveit2_jazzy_ws
-vcs import src < moveit2_jazzy.repos --recursive
+git clone https://github.com/Mechazo11/moveit2_nav2_jazzy_ws.git
+cd moveit2_nav2_jazzy_ws
+vcs import src < moveit2_nav2_jazzy.repos --recursive
 rosdep install -r --from-paths src --rosdistro jazzy -i -y
 ```
 
@@ -35,7 +34,8 @@ rosdep install -r --from-paths src --rosdistro jazzy -i -y
 source ~/ubuntu22_jazzy_ws/install/setup.bash
 colcon build --packages-up-to moveit_planners_ompl --packages-ignore stomp stomp_moveit moveit_planners_stomp --cmake-args -DCMAKE_BUILD_TYPE=Release
 source ./install/setup.bash
-colcon build --packages-ignore stomp stomp_moveit moveit_planners_stomp --cmake-args -DCMAKE_BUILD_TYPE=Release
+#colcon build --packages-ignore stomp stomp_moveit moveit_planners_stomp --cmake-args -DCMAKE_BUILD_TYPE=Release
+colcon build --packages-ignore stomp stomp_moveit moveit_planners_stomp --cmake-args -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_FLAGS="-w"
 ```
 
 
@@ -56,43 +56,49 @@ rosinstall_generator \
   > moveit2_generated_pkgs.repos
 ```
 
-```
-colcon build --packages-select angles eigen_stl_containers moveit_common moveit_resources_panda_description moveit_resources_pr2_description octomap_msgs osqp_vendor random_numbers srdfdom geometric_shapes moveit_resources_panda_moveit_config object_recognition_msgs moveit_msgs
-
-
-```
-
-```
-To suppress this warning ignore these packages in the workspace:
---packages-ignore ament_cmake_core ament_cmake_export_definitions ament_cmake_export_include_directories ament_cmake_export_libraries ament_cmake_export_link_flags ament_cmake_include_directories ament_cmake_libraries ament_cmake_python ament_cmake_version ament_cmake_export_dependencies ament_cmake_export_interfaces ament_cmake_export_targets ament_cmake_target_dependencies ament_cmake_test ament_cmake_gtest ament_cmake_gen_version_h ament_cmake action_msgs
-```
-
-
+* Open issue for nav2_amcl build
 ```bash
---- stderr: moveit_core                                          
-In file included from /home/tigerwife/moveit2_jazzy_ws/install/ruckig/include/ruckig/calculator.hpp:5,
-                 from /home/tigerwife/moveit2_jazzy_ws/install/ruckig/include/ruckig/ruckig.hpp:13,
-                 from /home/tigerwife/moveit2_jazzy_ws/src/moveit/moveit2/moveit_core/online_signal_smoothing/include/moveit/online_signal_smoothing/ruckig_filter.h:47,
-                 from /home/tigerwife/moveit2_jazzy_ws/src/moveit/moveit2/moveit_core/online_signal_smoothing/src/ruckig_filter.cpp:35:
-/home/tigerwife/moveit2_jazzy_ws/install/ruckig/include/ruckig/calculator_cloud.hpp:12:10: fatal error: nlohmann/json.hpp: No such file or directory
-   12 | #include <nlohmann/json.hpp>
-      |          ^~~~~~~~~~~~~~~~~~~
-compilation terminated.
-gmake[2]: *** [online_signal_smoothing/CMakeFiles/moveit_ruckig_filter.dir/build.make:76: online_signal_smoothing/CMakeFiles/moveit_ruckig_filter.dir/src/ruckig_filter.cpp.o] Error 1
-gmake[1]: *** [CMakeFiles/Makefile2:1887: online_signal_smoothing/CMakeFiles/moveit_ruckig_filter.dir/all] Error 2
-gmake[1]: *** Waiting for unfinished jobs....
+In file included from /home/tigerwife/moveit2_nav2_jazzy_ws/src/ros-navigation/navigation2/nav2_amcl/include/nav2_amcl/amcl_node.hpp:32,
+                 from /home/tigerwife/moveit2_nav2_jazzy_ws/src/ros-navigation/navigation2/nav2_amcl/src/amcl_node.cpp:23:
+/home/tigerwife/moveit2_nav2_jazzy_ws/install/message_filters/include/message_filters/message_filters/subscriber.h:18:2: error: #warning This header is obsolete, please include message_filters/subscriber.hpp instead [-Werror=cpp]
+   18 | #warning This header is obsolete, please include message_filters/subscriber.hpp instead
+      |  ^~~~~~~
+In file included from /home/tigerwife/ubuntu22_jazzy_ws/install/tf2_ros/include/tf2_ros/tf2_ros/message_filter.h:50,
+                 from /home/tigerwife/moveit2_nav2_jazzy_ws/src/ros-navigation/navigation2/nav2_amcl/include/nav2_amcl/amcl_node.hpp:49:
+/home/tigerwife/moveit2_nav2_jazzy_ws/install/message_filters/include/message_filters/message_filters/connection.h:18:2: error: #warning This header is obsolete, please include message_filters/connection.hpp instead [-Werror=cpp]
+   18 | #warning This header is obsolete, please include message_filters/connection.hpp instead
+      |  ^~~~~~~
+In file included from /home/tigerwife/ubuntu22_jazzy_ws/install/tf2_ros/include/tf2_ros/tf2_ros/message_filter.h:51:
+/home/tigerwife/moveit2_nav2_jazzy_ws/install/message_filters/include/message_filters/message_filters/message_traits.h:18:2: error: #warning This header is obsolete, please include message_filters/message_traits.hpp instead [-Werror=cpp]
+   18 | #warning This header is obsolete, please include message_filters/message_traits.hpp instead
+      |  ^~~~~~~
+In file included from /home/tigerwife/ubuntu22_jazzy_ws/install/tf2_ros/include/tf2_ros/tf2_ros/message_filter.h:52:
+/home/tigerwife/moveit2_nav2_jazzy_ws/install/message_filters/include/message_filters/message_filters/simple_filter.h:18:2: error: #warning This header is obsolete, please include message_filters/simple_filter.hpp instead [-Werror=cpp]
+   18 | #warning This header is obsolete, please include message_filters/simple_filter.hpp instead
+      |  ^~~~~~~
+cc1plus: all warnings being treated as errors
+gmake[2]: *** [CMakeFiles/amcl_core.dir/build.make:76: CMakeFiles/amcl_core.dir/src/amcl_node.cpp.o] Error 1
+gmake[1]: *** [CMakeFiles/Makefile2:241: CMakeFiles/amcl_core.dir/all] Error 2
 gmake: *** [Makefile:146: all] Error 2
----
 ```
 
+* Error with nav2_waypoint_follower
+
 ```bash
-'ament_cmake_pytest' is in: /home/icore/moveit2_jazzy_ws/install/ament_cmake_pytest, /home/icore/ubuntu22_jazzy_ws/install/ament_cmake_pytest
-        'ament_cmake' is in: /home/icore/moveit2_jazzy_ws/install/ament_cmake, /home/icore/ubuntu22_jazzy_ws/install/ament_cmake
-        'ament_cmake_test' is in: /home/icore/moveit2_jazzy_ws/install/ament_cmake_test, /home/icore/ubuntu22_jazzy_ws/install/ament_cmake_test
-        'ament_cmake_google_benchmark' is in: /home/icore/moveit2_jazzy_ws/install/ament_cmake_google_benchmark, /home/icore/ubuntu22_jazzy_ws/install/ament_cmake_google_benchmark
-        'action_msgs' is in: /home/icore/moveit2_jazzy_ws/install/action_msgs, /home/icore/ubuntu22_jazzy_ws/install/action_msgs
-        'ament_cmake_ros' is in: /home/icore/ubuntu22_jazzy_ws/install/ament_cmake_ros
-        'ament_cmake_gtest' is in: /home/icore/moveit2_jazzy_ws/install/ament_cmake_gtest, /home/icore/ubuntu22_jazzy_ws/install/ament_cmake_gtest
-        'ament_cmake_core' is in: /home/icore/moveit2_jazzy_ws/install/ament_cmake_core, /home/icore/ubuntu22_jazzy_ws/install/ament_cmake_core
-        'ament_cmake_gmock' is in: /home/icore/moveit2_jazzy_ws/install/ament_cmake_gmock, /home/icore/ubuntu22_jazzy_ws/install/ament_cmake_gmock
+--- stderr: nav2_waypoint_follower                                                             
+CMake Error at /home/tigerwife/moveit2_nav2_jazzy_ws/install/robot_localization/share/robot_localization/cmake/robot_localizationExport.cmake:61 (set_target_properties):
+  The link interface of target "robot_localization::rl_lib" contains:
+
+    yaml-cpp::yaml-cpp
+
+  but the target was not found.  Possible reasons include:
+
+    * There is a typo in the target name.
+    * A find_package call is missing for an IMPORTED target.
+    * An ALIAS target is missing.
+
+Call Stack (most recent call first):
+  /home/tigerwife/moveit2_nav2_jazzy_ws/install/robot_localization/share/robot_localization/cmake/ament_cmake_export_targets-extras.cmake:9 (include)
+  /home/tigerwife/moveit2_nav2_jazzy_ws/install/robot_localization/share/robot_localization/cmake/robot_localizationConfig.cmake:41 (include)
+  CMakeLists.txt:20 (find_package)
 ```
